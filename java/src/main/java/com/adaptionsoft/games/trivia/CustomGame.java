@@ -1,10 +1,12 @@
 package com.adaptionsoft.games.trivia;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class CustomGame {
-    ArrayList players = new ArrayList();
+	PrintStream out = System.out;
+	ArrayList players = new ArrayList();
     int[] places = new int[6];
     int[] purses  = new int[6];
     boolean[] inPenaltyBox  = new boolean[6];
@@ -17,7 +19,7 @@ public class CustomGame {
     int currentPlayer = 0;
     boolean isGettingOutOfPenaltyBox;
 
-    public CustomGame(){
+	public CustomGame(){
     	for (int i = 0; i < 50; i++) {
 			popQuestions.addLast("Pop Question " + i);
 			scienceQuestions.addLast(("Science Question " + i));
@@ -136,14 +138,14 @@ public class CustomGame {
 			
 			
 		} else {
-		
-			System.out.println("Answer was correct!!!!");
+
+			println("Answer was correct!!!!");
 			purses[currentPlayer]++;
-			System.out.println(players.get(currentPlayer) 
+			println(players.get(currentPlayer)
 					+ " now has "
 					+ purses[currentPlayer]
 					+ " Gold Coins.");
-			
+
 			boolean winner = didPlayerWin();
 			currentPlayer++;
 			if (currentPlayer == players.size()) currentPlayer = 0;
@@ -151,7 +153,12 @@ public class CustomGame {
 			return winner;
 		}
 	}
-	
+
+	private void println(String message) {
+		out.println(message);
+	}
+
+
 	public boolean wrongAnswer(){
 		System.out.println("Question was incorrectly answered");
 		System.out.println(players.get(currentPlayer)+ " was sent to the penalty box");
