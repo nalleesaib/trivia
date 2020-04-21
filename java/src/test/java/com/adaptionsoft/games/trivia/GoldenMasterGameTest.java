@@ -13,6 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class GoldenMasterGameTest {
 
 	private static boolean notAWinner;
+	private static boolean notACustomWinner;
 
 	@Test
 	public void testGoldenMasterGameRunner() {
@@ -34,12 +35,14 @@ public class GoldenMasterGameTest {
 		do {
 
 			aGame.roll(number);
-
+			customGame.roll(number);
 			if (isWrongAnswer) {
 				notAWinner = aGame.wrongAnswer();
+				notACustomWinner = customGame.wrongAnswer();
 				isWrongAnswer = false;
 			} else {
 				notAWinner = aGame.wasCorrectlyAnswered();
+				notACustomWinner = customGame.wasCorrectlyAnswered();
 				isWrongAnswer = true;
 			}
 			number += 1;
@@ -48,7 +51,7 @@ public class GoldenMasterGameTest {
 				number = 1;
 			}
 
-			assertThat(notAWinner).isEqualTo("Rock Question 1");
+			assertThat(notAWinner).isEqualTo(notACustomWinner);
 
 
 		} while (notAWinner);
