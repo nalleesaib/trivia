@@ -57,17 +57,5 @@ public class CustomGameTest {
         assertThat(argumentCaptor.getAllValues().get(1)).isEqualTo("Chet now has 1 Gold Coins.");
         assertThat(argumentCaptor.getAllValues().size()).isEqualTo(2);
     }
-    
-    @Test
-    public void shouldPrintCorrectAnswerMessageUsingDependencyInversion() {
-        CustomGame game = new CustomGame();
-        game.add("Julien");
-        PrintStream consoleMock = mock(PrintStream.class);
-        game.out = consoleMock;
-        
-        game.wasCorrectlyAnswered();
-        
-        verify(consoleMock, times(2)).println(anyString());
-    }
-    
+
 }
