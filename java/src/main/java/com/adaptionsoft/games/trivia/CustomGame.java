@@ -113,15 +113,48 @@ public class CustomGame {
         System.out.println(playerNames.get(currentPlayer) + " is the current player");
     }
 
+    /*
+        todo-list:
+      √ Sysout
+      √ if -> switch
+      √ removeFirst : pas clair
+        switch redondant => DRY
+     */
     private void askQuestion() {
-        if (currentCategory() == "Pop")
-            System.out.println(popQuestions.removeFirst());
-        if (currentCategory() == "Science")
-            System.out.println(scienceQuestions.removeFirst());
-        if (currentCategory() == "Sports")
-            System.out.println(sportsQuestions.removeFirst());
-        if (currentCategory() == "Rock")
-            System.out.println(rockQuestions.removeFirst());
+        switch (currentCategory()) {
+            case "Pop":
+                askNextQuestion(getNextPopQuestion());
+                break;
+            case "Science":
+                askNextQuestion(getNextScienceQuestion());
+                break;
+            case "Sports":
+                askNextQuestion(getNextSportsQuestion());
+                break;
+            case "Rock":
+                askNextQuestion(getNextRockQuestion());
+                break;
+        }
+    }
+
+    private void askNextQuestion(Object nextQuestion) {
+        System.out.println(nextQuestion);
+    }
+
+    private Object getNextRockQuestion() {
+        return rockQuestions.removeFirst();
+    }
+
+    private Object getNextSportsQuestion() {
+        return sportsQuestions.removeFirst();
+    }
+
+    private Object getNextScienceQuestion() {
+        return scienceQuestions.removeFirst();
+    }
+
+    private Object getNextPopQuestion() {
+        return popQuestions.removeFirst();
     }
 
 
