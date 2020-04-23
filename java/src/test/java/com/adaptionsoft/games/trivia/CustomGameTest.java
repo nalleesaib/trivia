@@ -13,7 +13,6 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import java.io.PrintStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.*;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(PrintStream.class)
@@ -25,7 +24,7 @@ public class CustomGameTest {
 
         //Given
         CustomGame customGame = new CustomGame();
-        customGame.add("Chet");
+        customGame.addPlayer("Chet");
         RememberAllWrittenTextPrintStream ps =new RememberAllWrittenTextPrintStream(System.out);
         System.setOut(ps);
 
@@ -41,7 +40,7 @@ public class CustomGameTest {
 
         //Given
         CustomGame customGame = new CustomGame();
-        customGame.add("Chet");
+        customGame.addPlayer("Chet");
 
         PrintStream spy = PowerMockito.spy(System.out);
         ArgumentCaptor<String> argumentCaptor = ArgumentCaptor.forClass(String.class);

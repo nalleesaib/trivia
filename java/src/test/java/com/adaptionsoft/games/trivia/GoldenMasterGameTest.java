@@ -25,9 +25,9 @@ public class GoldenMasterGameTest {
 		aGame.add("Sue");
 
 		CustomGame customGame = new CustomGame();
-		customGame.add("Chet");
-		customGame.add("Pat");
-		customGame.add("Sue");
+		customGame.addPlayer("Chet");
+		customGame.addPlayer("Pat");
+		customGame.addPlayer("Sue");
 
 		//when
 		int number = 1;
