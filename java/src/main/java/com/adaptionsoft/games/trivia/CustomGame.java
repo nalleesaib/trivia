@@ -6,8 +6,8 @@ import java.util.LinkedList;
 public class CustomGame {
     ArrayList playerNames = new ArrayList();
     int[] places = new int[6];
-    int[] purses  = new int[6];
-    boolean[] inPenaltyBox  = new boolean[6];
+    int[] purses = new int[6];
+    boolean[] inPenaltyBox = new boolean[6];
 
     LinkedList popQuestions = new LinkedList();
     LinkedList scienceQuestions = new LinkedList();
@@ -17,7 +17,7 @@ public class CustomGame {
     int currentPlayer = 0;
     boolean isGettingOutOfPenaltyBox;
 
-    public  CustomGame(){
+    public CustomGame() {
         for (int i = 0; i < 50; i++) {
             popQuestions.addLast("Pop Question " + i);
             scienceQuestions.addLast(("Science Question " + i));
@@ -26,7 +26,7 @@ public class CustomGame {
         }
     }
 
-    public String createRockQuestion(int index){
+    public String createRockQuestion(int index) {
         return "Rock Question " + index;
     }
 
@@ -55,22 +55,18 @@ public class CustomGame {
         if (inPenaltyBox[currentPlayer]) {
             if (dieFace % 2 != 0) {
                 isGettingOutOfPenaltyBox = true;
-
                 displayWhenCurrentPlayerOutOfPenaltyBox();
-                moveCurrentPlayer(dieFace);
-                displayCurrentPlayerLocation();
-                displayCurrentCategory();
-                askQuestion();
             } else {
-                displayWhenCurrentPlayerStaysInPenaltyBox();
                 isGettingOutOfPenaltyBox = false;
+                displayWhenCurrentPlayerStaysInPenaltyBox();
+                return;
             }
-        } else {
-            moveCurrentPlayer(dieFace);
-            displayCurrentPlayerLocation();
-            displayCurrentCategory();
-            askQuestion();
         }
+
+        moveCurrentPlayer(dieFace);
+        displayCurrentPlayerLocation();
+        displayCurrentCategory();
+        askQuestion();
     }
 
     private void displayWhenCurrentPlayerStaysInPenaltyBox() {
@@ -130,7 +126,7 @@ public class CustomGame {
     }
 
     public boolean wasCorrectlyAnswered() {
-        if (inPenaltyBox[currentPlayer]){
+        if (inPenaltyBox[currentPlayer]) {
             if (isGettingOutOfPenaltyBox) {
                 System.out.println("Answer was correct!!!!");
                 purses[currentPlayer]++;
@@ -151,7 +147,6 @@ public class CustomGame {
             }
 
 
-
         } else {
 
             System.out.println("Answer was correct!!!!");
@@ -169,9 +164,9 @@ public class CustomGame {
         }
     }
 
-    public boolean wrongAnswer(){
+    public boolean wrongAnswer() {
         System.out.println("Question was incorrectly answered");
-        System.out.println(playerNames.get(currentPlayer)+ " was sent to the penalty box");
+        System.out.println(playerNames.get(currentPlayer) + " was sent to the penalty box");
         inPenaltyBox[currentPlayer] = true;
 
         currentPlayer++;
