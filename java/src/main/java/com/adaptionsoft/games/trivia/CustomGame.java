@@ -52,7 +52,7 @@ public class CustomGame {
         displayCurrentPlayerName();
         displayRollDieFace(dieFace);
 
-        if (inPenaltyBox[currentPlayer]) {
+        if (currentPlayerIsInPenaltyBox()) {
             if (isOdd(dieFace)) {
                 exitFromPenaltyBox();
             } else {
@@ -66,6 +66,10 @@ public class CustomGame {
 
         displayCurrentCategory();
         askQuestion();
+    }
+
+    private boolean currentPlayerIsInPenaltyBox() {
+        return inPenaltyBox[currentPlayer];
     }
 
     private void staysInPenaltyBox() {
