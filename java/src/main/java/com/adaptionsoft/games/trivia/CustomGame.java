@@ -53,20 +53,33 @@ public class CustomGame {
         displayRollDieFace(dieFace);
 
         if (inPenaltyBox[currentPlayer]) {
-            if (dieFace % 2 != 0) {
-                isGettingOutOfPenaltyBox = true;
-                displayWhenCurrentPlayerOutOfPenaltyBox();
+            if (isOdd(dieFace)) {
+                exitFromPenaltyBox();
             } else {
-                isGettingOutOfPenaltyBox = false;
-                displayWhenCurrentPlayerStaysInPenaltyBox();
+                staysInPenaltyBox();
                 return;
             }
         }
 
         moveCurrentPlayer(dieFace);
         displayCurrentPlayerLocation();
+
         displayCurrentCategory();
         askQuestion();
+    }
+
+    private void staysInPenaltyBox() {
+        isGettingOutOfPenaltyBox = false;
+        displayWhenCurrentPlayerStaysInPenaltyBox();
+    }
+
+    private void exitFromPenaltyBox() {
+        isGettingOutOfPenaltyBox = true;
+        displayWhenCurrentPlayerOutOfPenaltyBox();
+    }
+
+    private boolean isOdd(int dieFace) {
+        return dieFace % 2 != 0;
     }
 
     private void displayWhenCurrentPlayerStaysInPenaltyBox() {
